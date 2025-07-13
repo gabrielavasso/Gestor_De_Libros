@@ -37,7 +37,7 @@ Para obtener una copia local del proyecto, ejecuta:
 bash
 Copiar
 Editar
-git clone https://github.com/tu-usuario/gestor-libros.git
+git clone https://github.com/tu-usuario/Gestor_De_Libros.git
 cd gestor-libros
 2. Crear un entorno virtual
 Es recomendable usar un entorno virtual para gestionar las dependencias:
