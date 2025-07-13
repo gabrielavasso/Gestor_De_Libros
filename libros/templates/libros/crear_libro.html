@@ -1,0 +1,44 @@
+{% extends 'libros/base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        body {
+            font-size: 18px;  /* Ajusta el tamaño base del texto */
+        }
+
+        h2 {
+            font-size: 24px;  /* Título más grande */
+        }
+
+        form {
+            font-size: 18px;  /* Tamaño de fuente del formulario */
+        }
+
+        button {
+            font-size: 16px;  /* Tamaño de fuente en los botones */
+        }
+
+        .form-group {
+            margin-bottom: 20px;  /* Espaciado entre los campos */
+        }
+
+        .form-group label {
+            font-size: 18px;  /* Tamaño de las etiquetas */
+        }
+
+        .form-group input, .form-group select {
+            font-size: 16px;  /* Tamaño de los campos de texto y selección */
+        }
+    </style>
+
+    <h2 style="text-align:center;">📘 Cargar nuevo libro</h2>
+    <form method="POST" enctype="multipart/form-data" style="max-width:600px; margin:auto;">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="boton">Guardar</button>
+        <a href="{% url 'inicio' %}" class="boton">Volver</a>
+    </form>
+{% endblock %}

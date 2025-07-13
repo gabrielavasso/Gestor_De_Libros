@@ -1,0 +1,69 @@
+{% extends 'libros/base.html' %}
+{% load static %}
+
+{% block title %}📚 LEYES PARAGUAYAS{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background: url("{% static 'img/palacio.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    color: #4a0072;
+  }
+
+  .content-wrapper {
+    background-color: #f5e6ffcc;
+    padding: 30px;
+    margin: 40px auto;
+    border-radius: 15px;
+    max-width: 800px;
+    box-shadow: 0 0 15px #a56de2cc;
+  }
+
+  .book-item {
+    border-left: 5px solid #a56de2;
+    padding-left: 15px;
+    margin-bottom: 20px;
+  }
+
+  .stars {
+    color: #aa00ff;
+    font-weight: bold;
+  }
+
+  .btn {
+    display: inline-block;
+    background-color: #6a0dad;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #530a9a;
+  }
+</style>
+
+<div class="content-wrapper">
+  <p style="text-align: center; font-size: 22px; font-weight: bold; margin-bottom: 30px;">
+    🎯 GÉNERO MÁS VALORADO: <span style="text-transform: uppercase;">PROTECCIÓN ANIMAL</span>
+  </p>
+
+  {% if libro %}
+  <div class="book-item">
+    <strong>{{ libro.titulo }}</strong> – <em>{{ libro.autor.nombre }}</em><br>
+    <span class="stars">⭐⭐⭐⭐⭐ (5.0)</span><br><br>
+    <a href="{% url 'ver_pdf' libro_id=libro.id %}" class="btn">📄 Ver PDF</a>
+    <a href="{{ libro.archivo_pdf.url }}" download class="btn">⬇ Descargar PDF</a>
+  </div>
+  {% endif %}
+
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="{% url 'inicio' %}" class="btn">⬅ Volver al inicio</a>
+  </div>
+</div>
+{% endblock %}

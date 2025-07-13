@@ -1,0 +1,165 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Libros</title>
+    <style>
+        body {
+            background-image: url("{% static 'img/palacio.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Encabezado con color lavanda claro */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #EE82EE; /* Color lavanda claro */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Estilo para las imágenes del encabezado */
+        header img {
+            width: 120px; /* Tamaño ajustado de las imágenes */
+            height: auto;
+            border-radius: 15px;
+            opacity: 0.9; /* Transparencia ajustada */
+            filter: brightness(1.2);
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Título "GESTOR DE LIBROS LEGALES" */
+        header h1 {
+            font-size: 40px; /* Aumento del tamaño de "GESTOR DE LIBROS LEGALES" */
+            color: #fff; /* Blanco para el texto */
+            text-align: center;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        /* Botones con color lavanda claro */
+        .boton-recomendaciones, .buscar, .boton {
+            background-color: rgba(238, 130, 238, 0.8); /* Color lavanda claro */
+            color: #fff;
+            padding: 12px 25px; /* Botones más grandes */
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 18px; /* Más grande */
+        }
+
+        .boton-recomendaciones a, .boton a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Fondo de los libros con más transparencia */
+        .libro {
+            background-color: rgba(255, 255, 255, 0.4); /* Blanco más transparente */
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 25px; /* Más espacio dentro */
+            margin-bottom: 30px; /* Más margen entre libros */
+            width: 80%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 18px; /* Más grande */
+        }
+
+        .libro h3 {
+            color: #7e2d7eff;
+        }
+
+        .libro p {
+            color: #333;
+        }
+
+        .libro .boton {
+            background-color: #723372ff;
+        }
+
+        .libro .boton:hover {
+            background-color: #723372ff;
+        }
+
+        .boton-recomendaciones a:hover, .boton:hover {
+            background-color: #723372ff;
+        }
+
+        /* Contenedor principal de la página */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+        }
+
+        /* Botón fijo de 'Sube un Libro' con el color lavanda claro */
+        .boton-subir-libro {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            padding: 15px 30px; /* Botón más grande */
+            background-color: #EE82EE; /* Color lavanda claro */
+            color: white; /* Texto blanco */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px; /* Más grande */
+        }
+
+        /* Asegurar que el color del texto del botón no cambie al hacer clic */
+        .boton-subir-libro a {
+            color: white; /* Texto blanco */
+            text-decoration: none;
+        }
+
+        .boton-subir-libro a:active {
+            color: white; /* No cambiar color al hacer clic */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado restaurado con imágenes de la bandera y justicia -->
+    <header>
+        <!-- Bandera de Paraguay con efectos -->
+        <img src="{% static 'img/bandera_paraguaya.jpg' %}" alt="Bandera de Paraguay">
+
+        <h1>GESTOR DE LIBROS LEGALES</h1>
+
+        <!-- Símbolo de Justicia con efectos -->
+        <img src="{% static 'img/justicia.jpg' %}" alt="Símbolo de Justicia">
+    </header>
+
+    <!-- Eliminé la parte donde repetía "LEYES PARAGUAYAS" -->
+    <!-- Contenido principal que variará según la página -->
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Botón "Sube un Libro" con ícono 📖 en la parte inferior derecha -->
+    <div class="boton-subir-libro">
+        <a href="{% url 'crear_libro' %}">
+            📖 <span style="margin-left: 10px;">Sube un Libro</span>
+        </a>
+    </div>
+
+</body>
+</html>

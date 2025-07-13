@@ -1,0 +1,64 @@
+{% extends 'libros/base.html' %}
+
+{% block content %}
+    <h2 style="text-align:center; font-size: 28px; color: #6a0dad;">LEYES PARAGUAYAS</h2>
+
+    <div class="boton-recomendaciones" style="text-align:center; margin-bottom: 20px;">
+        <a href="{% url 'recomendaciones' %}" class="boton">⭐ Ver recomendaciones por género más valorado</a>
+    </div>
+
+    <form method="get" class="buscar" style="text-align:center; margin-bottom: 30px;">
+        <input type="text" name="q" placeholder="Buscar por título..." value="{{ query|default_if_none:'' }}" style="padding: 10px; width: 300px; border-radius: 8px; border: 1px solid #ccc;">
+        <button type="submit" class="boton">Buscar</button>
+    </form>
+
+    {% if libros %}
+        <p style="text-align:center;">Se encontraron {{ libros|length }} libro(s).</p>
+        {% for libro in libros %}
+            <div class="libro" style="background-color: #f9f2ff; border: 1px solid #d9b3ff; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                <h3 style="color: #800080;">{{ libro.titulo|upper }}</h3>
+                <p><strong>Autor:</strong> {{ libro.autor.nombre }}</p>
+                <p><strong>Clasificación:</strong> {{ libro.clasificacion.nombre }}</p>
+
+                {% with titulo=libro.titulo|lower %}
+                    {% if "proteccion y bienestar animal" in titulo %}
+                        <p><strong>Calificación:</strong>
+                            <i class="fas fa-star estrella"></i><i class="fas fa-star estrella"></i>
+                            <i class="fas fa-star estrella"></i><i class="fas fa-star estrella"></i>
+                            <i class="fas fa-star estrella"></i> (5.0)
+                        </p>
+                    {% elif "niñez y adolescencia" in titulo or "ninez y adolescencia" in titulo %}
+                        <p><strong>Calificación:</strong>
+                            <i class="fas fa-star estrella"></i><i class="fas fa-star estrella"></i>
+                            <i class="fas fa-star estrella"></i><i class="fas fa-star estrella"></i>
+                            <i class="fas fa-star-half-alt estrella"></i> (4.8)
+                        </p>
+                    {% elif "procesal civil" in titulo %}
+                        <p><strong>Calificación:</strong>
+                            <i class="fas fa-star estrella"></i><i class="fas fa-star estrella"></i>
+                            <i class="fas fa-star estrella"></i><i class="fas fa-star estrella"></i>
+                            <i class="fas fa-star-half-alt estrella"></i> (4.5)
+                        </p>
+                    {% endif %}
+                {% endwith %}
+
+                {% if libro.pdf %}
+                    <!-- Modificar aquí el enlace para que abra directamente el PDF -->
+                    <a href="{{ libro.pdf.url }}" class="boton ver" target="_blank">📄 Ver PDF</a>
+                    <a href="{{ libro.pdf.url }}" class="boton descargar" download>⬇️ Descargar</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center;">No se encontraron libros con ese título.</p>
+    {% endif %}
+
+    <!-- Botón "Sube un Libro" con ícono 📖 (libro abierto) en la parte inferior derecha -->
+    <div style="position: fixed; bottom: 30px; right: 30px;">
+        <a href="{% url 'crear_libro' %}">
+            <button class="boton" style="font-size: 18px; padding: 10px 20px; display: flex; align-items: center;">
+                📖 <span style="margin-left: 10px;">Sube un Libro</span>
+            </button>
+        </a>
+    </div>
+{% endblock %}
