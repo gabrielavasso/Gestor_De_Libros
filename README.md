@@ -223,7 +223,7 @@ Estudiante de Ingeniería Informática
 Materia: Programación 5
 Año: 2025
 
-                           ---
+                           
 🎓 **Conclusión**
 
 Este proyecto ha sido una excelente oportunidad para aplicar mis conocimientos de Django, Pandas y visualización de datos. Además, aprendí a crear una interfaz limpia y funcional, incorporando elementos visuales modernos como fondos patrióticos, estrellas de calificación y una estética lavanda que refleja el compromiso con el detalle.
